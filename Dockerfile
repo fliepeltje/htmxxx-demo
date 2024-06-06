@@ -18,7 +18,7 @@ FROM python:3.11.9-slim
 WORKDIR /app
 
 COPY --from=builder /app .
-COPY /static .
+COPY /static ./static/
 
 
 CMD ["/app/.venv/bin/python", "app.py"]%   
