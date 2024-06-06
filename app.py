@@ -43,5 +43,10 @@ async def qparam_update(request: Request):
     html = f"""<p id="qparam-target">{name} is doing such a good job with this demo"""
     return wrap_resp("qparam-target", html)
 
+@app.post("/form-post-update", response_class=HTMLResponse)
+async def form_post_update(request: Request):
+    html = f"""<p id="form-post-target">Form submitted!</p>"""
+    return wrap_resp("form-post-target", html)
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)
