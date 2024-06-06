@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htmxxx demo</title>
+    <script src="/static/script.js"></script>
+</head>
+<body>
+    <h1>htmxxx demo</h1>
+    <section>
+        <h2>Performing the simplest update</h2>
+        <p id="single-update">This will update when I click the link:</p>
+        <a href="/single-update" xxx>
+            click me
+        </a>
+    </section>
+
+    <section>
+        <h2>Performing multiple updates all over the page</h2>
+        <ul>
+            <li id="item-1">htmx</li>
+            <li id="item-2">is</li>
+            <li id="item-3">great</li>
+        </ul>
+        <a href="/multiple-updates" xxx>
+            click me
+        </a>
+    </section>
+
+    <section>
+        <h2>Performing updates that introduce new interactive elements</h2>
+        <p id="nested-update"><a xxx href="/nested-update/1">Click me for an update</a></p>
+    </section>
+    
+    <section>
+        <h2>Performing updates with form get</h2>
+        <form method="get" action="/query-param-update" xxx>
+            <input name="name" type="text" placeholder="Enter your name">
+            <button type="submit">Submit</button>
+        </form>
+        <div id="qparam-target"></div>
+    </section>
+</body>
+<style>
+    body {
+        width: 500px;
+        margin: 0 auto;
+    }
+</style>
+</html>
