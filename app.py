@@ -63,5 +63,12 @@ async def modal():
 """
     return wrap_resp("modal-target", html)
 
+@app.get("/qparam-live", response_class=HTMLResponse)
+async def qparam_live(request: Request):
+    query_params = request.query_params
+    q = query_params.get("q")
+    html = f"""<p id="qparam-live-target">{q} is updating on change"""
+    return wrap_resp("qparam-live-target", html)
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)

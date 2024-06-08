@@ -55,6 +55,14 @@
         <a href="/modal" xxx>Open modal</a>
         <div id="modal-target"></div>
     </section>
+
+    <section>
+        <h2>Live updates on change (for e.g. live search)</h2>
+        <form method="get" action="/qparam-live" xxx>
+            <input name="q" type="text" placeholder="Enter query" onkeyup="this.form.requestSubmit()">
+        </form>
+        <div id="qparam-live-target"></div>
+    </section>
 </body>
 <style>
     body {
