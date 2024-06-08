@@ -48,5 +48,20 @@ async def form_post_update(request: Request):
     html = f"""<p id="form-post-target">Form submitted!</p>"""
     return wrap_resp("form-post-target", html)
 
+@app.get("/destroy/{target}", response_class=HTMLResponse)
+async def destroy(target: str):
+    return wrap_resp(target, "")
+
+@app.get("/modal", response_class=HTMLResponse)
+async def modal():
+    html = """
+<dialog id="modal" open>
+<h1>this is a modal</h1>
+<a href="/destroy/modal" xxx>Close</a>
+</dialog>
+<div id="modal-target"></div>
+"""
+    return wrap_resp("modal-target", html)
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)

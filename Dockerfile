@@ -21,4 +21,4 @@ COPY --from=builder /app .
 COPY /static ./static/
 
 
-CMD ["/app/.venv/bin/python", "app.py"]%   
+CMD ["/app/.venv/bin/python", "app.py"]
