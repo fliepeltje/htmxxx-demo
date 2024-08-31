@@ -33,7 +33,7 @@ async def multiple_updates():
 async def nested_update(x: int):
     new_x = x + 1
     update = f"""
-<p id="nested-update"><a href="/nested-update/{new_x}" xxx>I have update {x} times</a></p>
+<p id="nested-update"><a href="/nested-update/{new_x}" xxx>I have updated {x} times</a></p>
 """
     return wrap_resp("nested-update", update)
 
@@ -80,7 +80,7 @@ async def stream_me_baby():
         return wrap_resp("stream-target", pre)
     async def stream():
         yield await _wrap_stream("A totally real AI model is thinking now...")
-        await asyncio.sleep(3)
+        await asyncio.sleep(2)
         for i in range(len(content.split())):
             stream_content = " ".join(content.split()[:i])
             yield await _wrap_stream(stream_content)
