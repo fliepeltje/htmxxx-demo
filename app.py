@@ -1,7 +1,9 @@
+import asyncio
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.responses import StreamingResponse
 
 
 app = FastAPI()
@@ -69,6 +71,21 @@ async def qparam_live(request: Request):
     q = query_params.get("q")
     html = f"""<p id="qparam-live-target">{q} is updating on change"""
     return wrap_resp("qparam-live-target", html)
+
+@app.get("/stream-me-baby", response_class=StreamingResponse)
+async def stream_me_baby():
+    content = """This (almost) looks like that fancy chatgpt response thing!"""
+    async def _wrap_stream(content: str):
+        pre = f"""<pre id="stream-target">{content}</pre>"""
+        return wrap_resp("stream-target", pre)
+    async def stream():
+        yield await _wrap_stream("A totally real AI model is thinking now...")
+        await asyncio.sleep(3)
+        for i in range(len(content.split())):
+            stream_content = " ".join(content.split()[:i])
+            yield await _wrap_stream(stream_content)
+            await asyncio.sleep(0.2)
+    return StreamingResponse(stream(), media_type="text/html")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)
